@@ -14,6 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Configuration
 public class AppConfiguration {
+    //configuration du habitant
     private  final paysRepository paysrepository ;
     private  final habitantRepository habitantrepository;
     @Bean
@@ -46,6 +47,7 @@ public class AppConfiguration {
             }
         };
     }
+    //configuration du pays
     @Bean
     public paysServices paysservicesconfiguration(){
         return new paysServices() {
