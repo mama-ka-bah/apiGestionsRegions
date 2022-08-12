@@ -25,8 +25,8 @@ public class habitantServicesImplement implements habitantServices{
     public Habitant modifier(Long id, Habitant habitant) {
         return habitantrepository.findById(id)
                 .map(r->{
-                    r.setNbre_habitant(r.getNbre_habitant());
-                    r.setAnnee(r.getAnnee());
+                    r.setNbre_habitant(habitant.getNbre_habitant());
+                    r.setAnnee(habitant.getAnnee());
                     return habitantrepository.save(r);
                 }).orElseThrow(() -> new RuntimeException("Habitant non trouver"));
     }
