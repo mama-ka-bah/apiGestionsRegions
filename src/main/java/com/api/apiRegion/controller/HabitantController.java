@@ -3,6 +3,7 @@ package com.api.apiRegion.controller;
 import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.services.habitantServices;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.List;
 @RequestMapping("/habitant")
 @AllArgsConstructor
 public class HabitantController {
+
+    @Autowired
     final private habitantServices habitantservice;
 
     @PostMapping("/creer")

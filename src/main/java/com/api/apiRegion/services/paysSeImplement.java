@@ -3,10 +3,12 @@ package com.api.apiRegion.services;
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.repository.paysRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 @AllArgsConstructor
 
+@Service
 public class paysSeImplement implements paysServices {
 
     private  paysRepository paysrepository;

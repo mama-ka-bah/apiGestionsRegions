@@ -3,14 +3,18 @@ package com.api.apiRegion.services;
 import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.repository.habitantRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
-
-
 @AllArgsConstructor
+
+@Service
 public class habitantServicesImplement implements habitantServices{
-    private final habitantRepository habitantrepository;
+
+
+    private habitantRepository habitantrepository;
+
     @Override
     public Habitant creer(Habitant habitant) {
         return habitantrepository.save(habitant);

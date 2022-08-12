@@ -3,15 +3,17 @@ package com.api.apiRegion.controller;
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.services.paysServices;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @RequestMapping("/pays")
-@AllArgsConstructor
+@RestController
 public class PaysController {
-    private final paysServices paysservice;
+
+    @Autowired
+    paysServices paysservice;
 
     /*public PaysController(){
         this.paysservice = null;
