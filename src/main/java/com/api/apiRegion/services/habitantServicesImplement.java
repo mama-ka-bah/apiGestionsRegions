@@ -30,7 +30,6 @@ public class habitantServicesImplement implements habitantServices{
         return habitantrepository.findById(id)
                 .map(r->{
                     r.setNbre_habitant(habitant.getNbre_habitant());
-                    r.setAnnee(habitant.getAnnee());
                     return habitantrepository.save(r);
                 }).orElseThrow(() -> new RuntimeException("Habitant non trouver"));
     }
