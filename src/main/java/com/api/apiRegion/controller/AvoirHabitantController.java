@@ -1,9 +1,7 @@
 package com.api.apiRegion.controller;
 
 import com.api.apiRegion.modele.AvoirHabitant;
-import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.services.avoirHabitantServices;
-import com.api.apiRegion.services.habitantServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;

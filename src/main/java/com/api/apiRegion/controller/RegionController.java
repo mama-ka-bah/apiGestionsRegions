@@ -9,14 +9,26 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/region")
-@AllArgsConstructor
-@Api(value = "region", description = "MANIPULATION DES DONNEES DE LA TABLE REGION")
-public class RegionController {
-    private final regionServices regionservice;
 
-    @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION")
+/*
+    @PostMapping gère les requêtes HTTP de type post
+    @GetMapping gère les requêtes HTTP de type post
+    @PutMapping gère les requêtes HTTP de type put
+    @DeleteMapping gère les requêtes HTTP de type Delete
+    @RequestBody mappe le corps HttpRequest à un objet de transfert
+    @PathVariable //disposition des parametre
+    un type List est garanti être un Iterable mais un type  Iterable peut ne pas être un List
+*/
+
+@RestController//permet de specifier que la classe ci-dessus est un controlleur
+@RequestMapping("/region")//l'url permettant d'appeler le controlleur de region
+@AllArgsConstructor//Permet d'inclure le constructeur avec argument(lomboc)
+@Api(value = "region", description = "MANIPULATION DES DONNEES DE LA TABLE REGION")//permet de configurer une classe en tant que ressource Swagger
+//le controlleur ci-dessous permet de manupiler la region
+public class RegionController {
+    private final regionServices regionservice;//final permet rendre regionServices inchangeable
+
+    @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
     public Regions create(@RequestBody Regions regions){
         return regionservice.creer(regions);
@@ -24,7 +36,7 @@ public class RegionController {
 
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_region")
-    public List<Regions> read(){
+    public List<Object[]> read(){
         return regionservice.lire();
     }
 

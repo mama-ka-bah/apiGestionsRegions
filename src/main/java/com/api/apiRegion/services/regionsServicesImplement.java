@@ -19,8 +19,8 @@ public class regionsServicesImplement implements regionServices{
     }
 
     @Override
-    public List<Regions> lire() {
-        return regionsrepository.findAll();
+    public List<Object[]> lire() {
+        return (List<Object[]>) regionsrepository.FINDALLREGION();
     }
     @Override
     public Iterable<Object[]> lireSansPays(){return regionsrepository.FINDALLREGIONWITHOUTPAYS();}
@@ -34,12 +34,12 @@ public class regionsServicesImplement implements regionServices{
                     r.setLangue_majoritaire(regions.getLangue_majoritaire());
                     r.setSuperficie(regions.getSuperficie());
                     return regionsrepository.save(r);
-                }).orElseThrow(() -> new RuntimeException("Produit non trouvé !"));
+                }).orElseThrow(() -> new RuntimeException("Region non trouvé !"));
     }
 
     @Override
     public String supprimer(Long id) {
         regionsrepository.deleteById(id);
-        return "Produit supprimé";
+        return "Region supprimé";
     }
 }
