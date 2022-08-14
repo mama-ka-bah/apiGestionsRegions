@@ -15,7 +15,7 @@ public class Habitant{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(length = 15)
+
     private Long nbre_habitant;
 
     @OneToOne

@@ -12,30 +12,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/region")
 @AllArgsConstructor
-@Api(value = "hello", description = "Sample hello world application")
+@Api(value = "region", description = "MANIPULATION DES DONNEES DE LA TABLE REGION")
 public class RegionController {
     private final regionServices regionservice;
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/create")
+    @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION")
+    @PostMapping("/ajout_region")
     public Regions create(@RequestBody Regions regions){
         return regionservice.creer(regions);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @GetMapping("/read")
+    @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
+    @GetMapping("/liste_region")
     public List<Regions> read(){
         return regionservice.lire();
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PutMapping("/update/{id}")
+    @ApiOperation(value = "LISTE DES REGIONS SANS PAYS")
+    @GetMapping("/liste_region_sans_pays")
+    public Iterable<Object[]> list(){return regionservice.lireSansPays();}
+
+    @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
+    @PutMapping("/modifier_region/{id}")
     public Regions update(@PathVariable Long id, @RequestBody Regions regions){
         return regionservice.modifier(id, regions);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "SUPPRESION DES DONNEES DE LA TABLE REGION")
+    @DeleteMapping("/supprimer_region/{id}")
     public String delete(@PathVariable Long id){
         return regionservice.supprimer(id);
     }

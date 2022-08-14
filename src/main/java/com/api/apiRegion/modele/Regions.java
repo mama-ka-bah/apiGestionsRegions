@@ -19,14 +19,16 @@ public class Regions{
 
     /*@GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private Long id;
-    @Column(length = 15)
+
     private String code_region;
-    @Column(length = 15)
+
     private String domaine_activite;
-    @Column(length = 150)
+
     private String superficie;
-    @Column(length = 100)
+
     private String langue_majoritaire;
+
+    private String nom_region;
 
 
     //@ManyToOne
