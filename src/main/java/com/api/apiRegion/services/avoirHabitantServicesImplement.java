@@ -10,18 +10,22 @@ import java.util.List;
 @Service
 public class avoirHabitantServicesImplement implements avoirHabitantServices{
 
+    //DECLARATION D'UNE VARIABLE DE TYPE REPOSITORY
     private avoirhabitantRepository avoirhabitantrepository;
 
+    //IMPLEMENTATION DE LA METHODE CREER
     @Override
     public AvoirHabitant creer(AvoirHabitant avoirhabitant) {
         return avoirhabitantrepository.save(avoirhabitant);
     }
 
+    //IMPLEMENTATION DE LA METHODE LIRE
     @Override
     public List<AvoirHabitant> lire() {
         return avoirhabitantrepository.findAll();
     }
 
+    //IMPLEMENTATION DE LA METHODE MODIFIER
     @Override
     public AvoirHabitant modifier(Long id, AvoirHabitant avoirhabitant) {
         return avoirhabitantrepository.findById(id)
@@ -31,6 +35,7 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
                 }).orElseThrow(() -> new RuntimeException("Habitant non trouver"));
     }
 
+    //IMPLEMENTATION DE LA METHODE SUPPRIMER
     @Override
     public String supprimer(Long id) {
         avoirhabitantrepository.deleteById(id);

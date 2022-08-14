@@ -12,19 +12,22 @@ import java.util.List;
 @Service
 public class habitantServicesImplement implements habitantServices{
 
-
+    //DECLARATION D'UN ATTRIBUT DE TYPE REPOSITORY
     private habitantRepository habitantrepository;
 
+    //IMPLEMENTATION DE LA METHODE CREER
     @Override
     public Habitant creer(Habitant habitant) {
         return habitantrepository.save(habitant);
     }
 
+    //IMPLEMENTATION DE LA METHODE LIRE
     @Override
     public List<Habitant> lire() {
         return habitantrepository.findAll();
     }
 
+    //IMPLEMENTATION DE LA METHODE MODIFIER
     @Override
     public Habitant modifier(Long id, Habitant habitant) {
         return habitantrepository.findById(id)
@@ -34,6 +37,7 @@ public class habitantServicesImplement implements habitantServices{
                 }).orElseThrow(() -> new RuntimeException("Habitant non trouver"));
     }
 
+    //IMPLEMENTATION DE LA METHODE SUPPRIMER
     @Override
     public String supprimer(Long id) {
         habitantrepository.deleteById(id);

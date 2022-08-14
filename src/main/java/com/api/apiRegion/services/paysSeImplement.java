@@ -11,18 +11,22 @@ import java.util.List;
 @Service
 public class paysSeImplement implements paysServices {
 
+    //DECLARATION D'UN ATTRIBUT DE TYPE REPOSITORY'
     private  paysRepository paysrepository;
 
+    //IMPLEMENTATION DE LA METHODE CREER
     @Override
     public Pays creer(Pays pays) {
         return paysrepository.save(pays);
     }
 
+    //IMPLEMENTATION DE LA METHODE LIRE
     @Override
     public List<Pays> lire() {
         return paysrepository.findAll();
     }
 
+    //IMPLEMENTATION DE LA METHODE MODIFIER
     @Override
     public Pays modifier(Long id, Pays pays) {
         return paysrepository.findById(id)
@@ -32,6 +36,7 @@ public class paysSeImplement implements paysServices {
                 }).orElseThrow(() -> new RuntimeException("Pays nom trouver"));
     }
 
+    //IMPLEMENTATION DE LA METHODE SUPPRIMER
     @Override
     public String supprimer(Long id) {
         paysrepository.deleteById(id);

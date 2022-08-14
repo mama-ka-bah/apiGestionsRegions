@@ -32,10 +32,12 @@ public class Regions{
 
 
     //@ManyToOne
+    //JOINTURE ENTRE LA TABLE REGION ET HABITANT
     @ManyToOne
     @JoinColumn(name = "nb_habitant_id")
     private Habitant nbHabitant;
 
+    //JOINTURE ENTRE LA TABLE REGION ET PAYS
     @ManyToOne
     @JoinColumn(name = "idpays_id")
     private Pays idpays;

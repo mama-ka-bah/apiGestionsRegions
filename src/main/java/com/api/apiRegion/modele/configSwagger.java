@@ -14,6 +14,24 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class configSwagger {
+    //LA METHODE DOKER PERMET DE GERER TOUTES LES CONFIGURATIONS
+    /**
+     * On commence alors par initialiser un objet Docket en précisant que nous souhaitons utiliser Swagger 2.
+     *
+     * select permet d'initialiser une classe du nom de ApiSelectorBuilder qui donne accès aux méthodes de
+     * personnalisation suivantes. Ne vous attardez pas sur cette méthode,
+     * elle n'est d'aucune utilité pour la suite.
+     *
+     * apis est la première méthode importante. Elle permet de filtrer la documentation à exposer
+     * selon les contrôleurs. Ainsi, vous pouvez cacher la documentation
+     * d'une partie privée ou interne de votre API. Dans ce cas,
+     * nous avons utilisé RequestHandlerSelectors.any().
+     *
+     * paths : cette méthode donne accès à une autre façon de filtrer :
+     * selon l'URI des requêtes. Ainsi, vous pouvez, par exemple,
+     * demander à Swagger de ne documenter que les méthodes qui
+     * répondent à des requêtes commençant par "/public" .
+     * */
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
@@ -22,6 +40,7 @@ public class configSwagger {
                 .apiInfo(apiInfo()).useDefaultResponseMessages(false);
     }
 
+    // CETTE PERMET DE D'INDIQUER PLUS D'INFORMATION PAR RAPPOR A L'API EN INDIQUANT LE TITRE, LA DESCRIPTION, LA LICENCE ET LA VERSION
     @Bean
     public ApiInfo apiInfo() {
         final ApiInfoBuilder builder = new ApiInfoBuilder();
