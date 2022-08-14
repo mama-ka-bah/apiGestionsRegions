@@ -22,6 +22,17 @@ public class regionsServicesImplement implements regionServices{
     public List<Object[]> lire() {
         return (List<Object[]>) regionsrepository.FINDALLREGION();
     }
+
+    @Override
+    public List<Object[]> lireRegionHbtAnnee() {
+        return  regionsrepository.FINDREGION_HBT_ANNEE();
+    }
+
+    @Override
+    public List<Object[]> lireRegionOfPays(String pays) {
+        return  regionsrepository.FINDREGIONSOFPAYS(pays);
+    }
+
     @Override
     public Iterable<Object[]> lireSansPays(){return regionsrepository.FINDALLREGIONWITHOUTPAYS();}
     @Override

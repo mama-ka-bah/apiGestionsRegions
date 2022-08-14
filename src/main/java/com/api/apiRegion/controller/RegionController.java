@@ -44,6 +44,17 @@ public class RegionController {
     @GetMapping("/liste_region_sans_pays")
     public Iterable<Object[]> list(){return regionservice.lireSansPays();}
 
+    @ApiOperation(value = "LISTE DES REGIONS ET L'EVOLUTION DE SON NOMBRE HABITANT")
+    @GetMapping("/liste_region_avec_habitant_annee")
+    public List<Object[]> lireRegionHbtAnnee(){return regionservice.lireRegionHbtAnnee();}
+
+    //liste des regions d'un pays donnée
+    @ApiOperation(value = "LISTE DES REGIONS D'UN PAYS DONNEE")
+    @GetMapping("/liste_region_pays/{pays}")
+    public List<Object[]> lireRegionOfPays(@PathVariable String pays){
+        return regionservice.lireRegionOfPays(pays);
+    }
+
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
     @PutMapping("/modifier_region/{id}")
     public Regions update(@PathVariable Long id, @RequestBody Regions regions){
