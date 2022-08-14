@@ -25,8 +25,8 @@ public class configSwagger {
     @Bean
     public ApiInfo apiInfo() {
         final ApiInfoBuilder builder = new ApiInfoBuilder();
-        builder.title("My Application API through Swagger UI").version("1.0").license("(C) Copyright Test")
-                .description("List of all the APIs of My Application App through Swagger UI");
+        builder.title("APPLICATION DE LA GESTION DES REGIONS").version("1.0").license("(C) Copyright dévéloppée par DEMBLE Idrissa & KEITA Mahamadou Apprenants Kalanso 2 | Destinée à Mali Tourisme")
+                .description("Cette API permet de gérer l'ensemble des régions d'une agence de tourisme");
         return builder.build();
     }
 }

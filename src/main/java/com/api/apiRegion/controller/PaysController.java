@@ -12,32 +12,32 @@ import java.util.List;
 
 @RequestMapping("/pays")
 @RestController
-@Api(value = "hello", description = "Sample hello world application")
+@Api(value = "pays", description = "MANIPULATION DES DONNEES DE LA TABLE PAYS")
 public class PaysController {
 
     @Autowired
     paysServices paysservice;
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/create")
+    @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE PAYS")
+    @PostMapping("/ajout_pays")
     public Pays create(@RequestBody Pays pays){
         return paysservice.creer(pays);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @GetMapping("/read")
+    @ApiOperation(value = "LISTE PAYS")
+    @GetMapping("/liste_pays")
     public List<Pays> read(){
         return paysservice.lire();
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PutMapping("/update/{id}")
+    @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE PAYS")
+    @PutMapping("/modifier_pays/{id}")
     public Pays update(@PathVariable Long id, @RequestBody Pays pays){
         return paysservice.modifier(id, pays);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @DeleteMapping("/delete/{id}")
+    @ApiOperation(value = "SUPPRESION DES DONNEE DANS LA TABLE PAYS")
+    @DeleteMapping("/supprimer_pays/{id}")
     public String delete(@PathVariable Long id){
         return paysservice.supprimer(id);
     }

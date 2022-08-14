@@ -15,31 +15,31 @@ import java.util.List;
 @RestController
 @RequestMapping("/annee")
 @AllArgsConstructor
-@Api(value = "hello", description = "Sample hello world application")
+@Api(value = "annee", description = "MANIPULATION DES DONNEES DE LA TABLE AVOIRHABITANT")
 public class AvoirHabitantController {
     @Autowired
     final private avoirHabitantServices avoirhabitantService;
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/ajouter")
+    @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE AVOIRHABITANT ")
+    @PostMapping("/ajout_annee")
     public AvoirHabitant creer(@RequestBody AvoirHabitant avoirhabitant){
         return avoirhabitantService.creer(avoirhabitant);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @GetMapping("/lister")
+    @ApiOperation(value = "LISTE ANNEE")
+    @GetMapping("/liste_annee")
     public List<AvoirHabitant> lister(){
         return avoirhabitantService.lire();
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PutMapping("/modifier/{id}")
+    @ApiOperation(value = "MODIFIER LES DONNER DE LA TABLE AVOIRHABITANT")
+    @PutMapping("/modifier_annee/{id}")
     public AvoirHabitant modifier(@PathVariable Long id, @RequestBody AvoirHabitant avoirhabitant){
         return avoirhabitantService.modifier(id, avoirhabitant);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @DeleteMapping("/supprimer/{id}")
+    @ApiOperation(value = "SUPPRIMER LES DONNEES DE LA TABLE AVOIRHABITANT")
+    @DeleteMapping("/supprimer_annee/{id}")
     public String supprimer(@PathVariable Long id){
         return avoirhabitantService.supprimer(id);
     }

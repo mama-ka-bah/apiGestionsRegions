@@ -12,32 +12,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/habitant")
 @AllArgsConstructor
-@Api(value = "hello", description = "Sample hello world application")
+@Api(value = "habitant", description = "MANIPULATION DES DONNEES DE LA TABLE PAYS")
 public class HabitantController {
 
     @Autowired
     final private habitantServices habitantservice;
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PostMapping("/creer")
+    @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE HABITANT")
+    @PostMapping("/ajout_habitant")
     public Habitant creer(@RequestBody Habitant habitant){
         return habitantservice.creer(habitant);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @GetMapping("/lister")
+    @ApiOperation(value = "LISTE HABITANT")
+    @GetMapping("/liste_habitant")
     public List<Habitant> lister(){
         return habitantservice.lire();
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @PutMapping("/modifier/{id}")
+    @ApiOperation(value = "MODIFIER DES DONNEES DE LA TABLE HABITANT")
+    @PutMapping("/modifier_habitant/{id}")
     public Habitant modifier(@PathVariable Long id, @RequestBody Habitant habitant){
         return habitantservice.modifier(id, habitant);
     }
 
-    @ApiOperation(value = "Just to test the sample test api of My App Service")
-    @DeleteMapping("/supprimer/{id}")
+    @ApiOperation(value = "SUPPRESSION DES DONNEES DE LA TABLE HABITANT")
+    @DeleteMapping("/supprimer_habitant/{id}")
     public String supprimer(@PathVariable Long id){
         return habitantservice.supprimer(id);
     }

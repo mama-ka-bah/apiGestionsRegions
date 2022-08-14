@@ -22,7 +22,8 @@ public class regionsServicesImplement implements regionServices{
     public List<Regions> lire() {
         return regionsrepository.findAll();
     }
-
+    @Override
+    public Iterable<Object[]> lireSansPays(){return regionsrepository.FINDALLREGIONWITHOUTPAYS();}
     @Override
     public Regions modifier(Long id, Regions regions) {
         return regionsrepository.findById(id)
