@@ -13,23 +13,17 @@ public class regionsServicesImplement implements regionServices{
 
     private  final regionsRepository regionsrepository;
 
-    //IMPLEMENTAION DE LA METHODE CREER
     @Override
     public Regions creer(Regions regions) {
         return regionsrepository.save(regions);
     }
 
-    //IMPLEMENTATION DE LA METHODE LIREAVECPAYS
     @Override
     public List<Object[]> lire() {
         return (List<Object[]>) regionsrepository.FINDALLREGION();
     }
-
-    //IMPLEMENTATION DE LA METHODE LIRESANSPAYS
     @Override
     public Iterable<Object[]> lireSansPays(){return regionsrepository.FINDALLREGIONWITHOUTPAYS();}
-
-    //IMLEMENTATION DE LA METHODE MODIFICATION
     @Override
     public Regions modifier(Long id, Regions regions) {
         return regionsrepository.findById(id)
@@ -43,7 +37,6 @@ public class regionsServicesImplement implements regionServices{
                 }).orElseThrow(() -> new RuntimeException("Region non trouvé !"));
     }
 
-    //IMPLEMENTATION DE LA METHODE SUPPRIMER
     @Override
     public String supprimer(Long id) {
         regionsrepository.deleteById(id);
