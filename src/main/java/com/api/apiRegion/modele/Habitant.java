@@ -19,8 +19,14 @@ public class Habitant{
 
     private Long nbre_habitant;
 
+    //@ManyToOne
+    //JOINTURE ENTRE LA TABLE HABITANT et region
+    @ManyToOne
+    @JoinColumn(name = "idRegion_id")
+    private Regions idRegion;
+
     //JOINTURE ENTRE LA TABLE HABITANT ET LA TABLE
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_avoirhabitant_id")
     private AvoirHabitant id_avoirhabitant;
 }
