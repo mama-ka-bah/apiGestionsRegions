@@ -31,8 +31,12 @@ public class AvoirHabitantController {
     }
 
     @ApiOperation(value = "MODIFIER LES DONNER DE LA TABLE AVOIRHABITANT")
-    @PutMapping("/modifier_annee/{id}")
+    @PutMapping("/modifier_annee/{id}") // Mappage utiliser pour les requette PUT HTTP
     public AvoirHabitant modifier(@PathVariable Long id, @RequestBody AvoirHabitant avoirhabitant){
+        /*
+        * l' annotation @PathVariable est utilisée pour gérer les variables de
+        * modèle dans le mappage URI de la demande et les définir en tant que paramètres de méthode.
+        * */
         return avoirhabitantService.modifier(id, avoirhabitant);
     }
 
