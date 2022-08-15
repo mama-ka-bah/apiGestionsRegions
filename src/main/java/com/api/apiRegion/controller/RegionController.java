@@ -42,7 +42,7 @@ public class RegionController {
 
     @ApiOperation(value = "LISTE DES REGIONS SANS PAYS")
     @GetMapping("/liste_region_sans_pays")
-    public Iterable<Object[]> list(){return regionservice.lireSansPays();}
+    public List<Object[]> list(){return regionservice.lireSansPays();}
 
     @ApiOperation(value = "LISTE DES REGIONS ET L'EVOLUTION DE SON NOMBRE HABITANT")
     @GetMapping("/liste_region_avec_habitant_annee")
