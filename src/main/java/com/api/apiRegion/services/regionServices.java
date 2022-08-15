@@ -1,10 +1,15 @@
 package com.api.apiRegion.services;
 
+import com.api.apiRegion.modele.AvoirHabitant;
+import com.api.apiRegion.modele.Habitant;
+import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 
 import java.util.List;
 
 public interface regionServices {
+    //methode ajouter Regions en indiquant les le pays et l'habitant
+    //List<Object[]> CrePays(Regions regions, Pays pays, Habitant habitant, AvoirHabitant avoirHabitant);
     //methode permettant de creer une region
     Regions creer(Regions regions);
     //methode permettant de lister une region

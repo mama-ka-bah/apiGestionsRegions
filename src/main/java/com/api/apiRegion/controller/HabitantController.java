@@ -32,13 +32,13 @@ public class HabitantController {
 
     @ApiOperation(value = "MODIFIER DES DONNEES DE LA TABLE HABITANT")
     @PutMapping("/modifier_habitant/{id}")
-    public Habitant modifier(@PathVariable Long id, @RequestBody Habitant habitant){
-        return habitantservice.modifier(id, habitant);
+    public Habitant modifier(@PathVariable Long indique_identifiant_habitant_à_modifier, @RequestBody Habitant habitant){
+        return habitantservice.modifier(indique_identifiant_habitant_à_modifier, habitant);
     }
 
     @ApiOperation(value = "SUPPRESSION DES DONNEES DE LA TABLE HABITANT")
     @DeleteMapping("/supprimer_habitant/{id}")
-    public String supprimer(@PathVariable Long id){
-        return habitantservice.supprimer(id);
+    public String supprimer(@PathVariable Long indique_identifiant_habitant_à_supprimer){
+        return habitantservice.supprimer(indique_identifiant_habitant_à_supprimer);
     }
 }
