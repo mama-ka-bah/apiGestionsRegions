@@ -20,8 +20,8 @@ public class HabitantController {
 
     @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE HABITANT")
     @PostMapping("/ajout_habitant")
-    public Habitant creer(@RequestBody Habitant habitant){
-        return habitantservice.creer(habitant);
+    public void creer(@RequestBody Habitant habitant){
+        habitantservice.creer(habitant);
     }
 
     @ApiOperation(value = "LISTE HABITANT")
