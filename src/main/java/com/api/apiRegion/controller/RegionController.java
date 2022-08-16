@@ -57,7 +57,9 @@ public class RegionController {
     @ApiOperation(value = "LISTE DES REGIONS D'UN PAYS DONNEE")
     @GetMapping("/liste_region_pays/{pays}")
     public List<Object[]> lireRegionOfPays(@PathVariable String pays){
-        return regionservice.lireRegionOfPays(pays);
+        List<Object[]> list = regionservice.lireRegionOfPays(pays);
+
+        return list;
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
