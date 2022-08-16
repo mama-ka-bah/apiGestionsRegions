@@ -20,7 +20,7 @@ public class regionsServicesImplement implements regionServices{
 
     @Override
     public List<Object[]> lire() {
-        return (List<Object[]>) regionsrepository.FINDALLREGION();
+        return regionsrepository.FINDALLREGION();
     }
 
     @Override

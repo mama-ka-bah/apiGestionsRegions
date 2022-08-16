@@ -20,7 +20,7 @@ public interface regionsRepository extends JpaRepository<Regions, Long> {
 
     //Region avec pays
     @Query(value = "SELECT regions.nom_region, pays.nom FROM regions, pays where regions.idpays_id = pays.id", nativeQuery = true )
-    public Iterable<Object[]> FINDALLREGION();
+    public List<Object[]> FINDALLREGION();
 
     //Une region donnée avec ses polpulation dans des differentes année
     @Query(value = "select habitants.nbre_habitant, regions.nom_region, avoirhabitant.annee from habitants, regions, avoirhabitant where habitants.id_region_id = regions.id and habitants.id_avoirhabitant_id = avoirhabitant.id;", nativeQuery = true )
