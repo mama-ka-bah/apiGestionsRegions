@@ -17,7 +17,7 @@ public class paysSeImplement implements paysServices {
     //IMPLEMENTATION DE LA METHODE CREER
     @Override
     public Pays creer(Pays pays) {
-        return paysrepository.save(pays);
+         return paysrepository.save(pays);
     }
 
     //IMPLEMENTATION DE LA METHODE LIRE
