@@ -28,6 +28,7 @@ public class Regions{
 
     private String langue_majoritaire;
 
+    @Column(unique = true)
     private String nom_region;
 
     //JOINTURE ENTRE LA TABLE REGION ET PAYS

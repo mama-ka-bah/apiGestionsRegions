@@ -1,6 +1,8 @@
 package com.api.apiRegion.controller;
 
+import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.modele.Regions;
+import com.api.apiRegion.services.habitantServices;
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,10 +29,13 @@ import java.util.List;
 //le controlleur ci-dessous permet de manupiler la region
 public class RegionController {
     private final regionServices regionservice;//final permet rendre regionServices inchangeable
+    private final habitantServices habitantservices;
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
-    public Regions create(@RequestBody Regions regions){
+    public Regions create(@RequestBody Regions regions, Habitant habitant){
+        regionservice.creer(regions);
+        habitantservices.creer(habitant);
         return regionservice.creer(regions);
     }
 
@@ -42,7 +47,7 @@ public class RegionController {
 
     @ApiOperation(value = "LISTE DES REGIONS SANS PAYS")
     @GetMapping("/liste_region_sans_pays")
-    public Iterable<Object[]> list(){return regionservice.lireSansPays();}
+    public List<Object[]> list(){return regionservice.lireSansPays();}
 
     @ApiOperation(value = "LISTE DES REGIONS ET L'EVOLUTION DE SON NOMBRE HABITANT")
     @GetMapping("/liste_region_avec_habitant_annee")
@@ -52,18 +57,20 @@ public class RegionController {
     @ApiOperation(value = "LISTE DES REGIONS D'UN PAYS DONNEE")
     @GetMapping("/liste_region_pays/{pays}")
     public List<Object[]> lireRegionOfPays(@PathVariable String pays){
-        return regionservice.lireRegionOfPays(pays);
+        List<Object[]> list = regionservice.lireRegionOfPays(pays);
+
+        return list;
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
-    @PutMapping("/modifier_region/{id}")
-    public Regions update(@PathVariable Long id, @RequestBody Regions regions){
-        return regionservice.modifier(id, regions);
+    @PutMapping("/modifier_region/{identifiant_region}")
+    public Regions update(@PathVariable Long identifiant_region, @RequestBody Regions regions){
+        return regionservice.modifier(identifiant_region, regions);
     }
 
     @ApiOperation(value = "SUPPRESION DES DONNEES DE LA TABLE REGION")
-    @DeleteMapping("/supprimer_region/{id}")
-    public String delete(@PathVariable Long id){
-        return regionservice.supprimer(id);
+    @DeleteMapping("/supprimer_region/{identifiant_region}")
+    public String delete(@PathVariable Long identifiant_region){
+        return regionservice.supprimer(identifiant_region);
     }
 }

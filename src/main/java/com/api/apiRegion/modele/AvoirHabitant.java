@@ -15,6 +15,7 @@ public class AvoirHabitant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private Long annee;
 
 }

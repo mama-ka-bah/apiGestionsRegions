@@ -20,7 +20,7 @@ public class regionsServicesImplement implements regionServices{
 
     @Override
     public List<Object[]> lire() {
-        return (List<Object[]>) regionsrepository.FINDALLREGION();
+        return regionsrepository.FINDALLREGION();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class regionsServicesImplement implements regionServices{
     }
 
     @Override
-    public Iterable<Object[]> lireSansPays(){return regionsrepository.FINDALLREGIONWITHOUTPAYS();}
+    public List<Object[]> lireSansPays(){return regionsrepository.FINDALLREGIONWITHOUTPAYS();}
     @Override
     public Regions modifier(Long id, Regions regions) {
         return regionsrepository.findById(id)

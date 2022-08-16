@@ -15,7 +15,7 @@ public interface regionServices {
     //methode permettant de lister une region
     List<Object[]> lire();
     //methode permettant de lister des regions sans pays
-    Iterable<Object[]> lireSansPays();
+    List<Object[]> lireSansPays();
     //methode permettant de lister des regions avec l'évolution
     List<Object[]> lireRegionHbtAnnee();
     //methode permettant de lister les regions d'un pays

@@ -31,13 +31,13 @@ public class AvoirHabitantController {
     }
 
     @ApiOperation(value = "MODIFIER LES DONNER DE LA TABLE AVOIRHABITANT")
-    @PutMapping("/modifier_annee/{id}")
+    @PutMapping("/modifier_annee/{indique_identifiant_annee_à_modifier}")
     public AvoirHabitant modifier(@PathVariable Long indique_identifiant_annee_à_modifier, @RequestBody AvoirHabitant avoirhabitant){
         return avoirhabitantService.modifier(indique_identifiant_annee_à_modifier, avoirhabitant);
     }
 
     @ApiOperation(value = "SUPPRIMER LES DONNEES DE LA TABLE AVOIRHABITANT")
-    @DeleteMapping("/supprimer_annee/{id}")
+    @DeleteMapping("/supprimer_annee/{indique_identifiant_annee_à_supprimer}")
     public String supprimer(@PathVariable Long indique_identifiant_annee_à_supprimer){
         return avoirhabitantService.supprimer(indique_identifiant_annee_à_supprimer);
     }
