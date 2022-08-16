@@ -67,8 +67,8 @@ public class RegionController {
     }
 
     @ApiOperation(value = "SUPPRESION DES DONNEES DE LA TABLE REGION")
-    @DeleteMapping("/supprimer_region/{id}")
-    public String delete(@PathVariable Long id){
-        return regionservice.supprimer(id);
+    @DeleteMapping("/supprimer_region/{identifiant_region}")
+    public String delete(@PathVariable Long identifiant_region){
+        return regionservice.supprimer(identifiant_region);
     }
 }
