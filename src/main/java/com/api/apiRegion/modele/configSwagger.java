@@ -16,6 +16,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class configSwagger {
     //LA METHODE DOKER PERMET DE GERER TOUTES LES CONFIGURATIONS
     /**
+     * L'annotation   @Configuration  appliquée à la classe permet de remplacer un fichier de configuration classique en XML.
      * On commence alors par initialiser un objet Docket en précisant que nous souhaitons utiliser Swagger 2.
      *
      * select permet d'initialiser une classe du nom de ApiSelectorBuilder qui donne accès aux méthodes de

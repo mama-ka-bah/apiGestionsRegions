@@ -1,6 +1,8 @@
 package com.api.apiRegion.controller;
 
+import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.modele.Regions;
+import com.api.apiRegion.services.habitantServices;
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,10 +29,13 @@ import java.util.List;
 //le controlleur ci-dessous permet de manupiler la region
 public class RegionController {
     private final regionServices regionservice;//final permet rendre regionServices inchangeable
+    private final habitantServices habitantservices;
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
-    public Regions create(@RequestBody Regions regions){
+    public Regions create(@RequestBody Regions regions, Habitant habitant){
+        regionservice.creer(regions);
+        habitantservices.creer(habitant);
         return regionservice.creer(regions);
     }
 
@@ -56,9 +61,9 @@ public class RegionController {
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
-    @PutMapping("/modifier_region/{id}")
-    public Regions update(@PathVariable Long id, @RequestBody Regions regions){
-        return regionservice.modifier(id, regions);
+    @PutMapping("/modifier_region/{identifiant_region}")
+    public Regions update(@PathVariable Long identifiant_region, @RequestBody Regions regions){
+        return regionservice.modifier(identifiant_region, regions);
     }
 
     @ApiOperation(value = "SUPPRESION DES DONNEES DE LA TABLE REGION")
