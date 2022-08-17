@@ -18,10 +18,17 @@ public class HabitantController {
     @Autowired
     final private habitantServices habitantservice;
 
+    /*
     @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE HABITANT")
     @PostMapping("/ajout_habitant")
     public void creer(@RequestBody Habitant habitant){
         habitantservice.creer(habitant);
+    }
+*/
+    @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE HABITANT")
+    @PostMapping("/ajout_habitant/{nbre_habitant}/{id_region_id}/{id_avoirhabitant_id}")
+    public void ajout_habitant(@PathVariable String nbre_habitant,@PathVariable Long id_region_id, @PathVariable Long id_avoirhabitant_id){
+        habitantservice.ajouterHabitant(nbre_habitant, id_region_id, id_avoirhabitant_id);
     }
 
     @ApiOperation(value = "LISTE HABITANT")

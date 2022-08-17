@@ -20,9 +20,23 @@ public class PaysController {
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE PAYS")
     @PostMapping("/ajout_pays")
+<<<<<<< HEAD
     public Pays create(@RequestBody Pays pays){
 
         return paysservice.creer(pays);
+=======
+    public String create(@RequestBody Pays pays){
+
+        Pays veryfierNomPays = paysservice.trouverPaysParNom(pays.getNomp());//L
+        if (veryfierNomPays == null)
+        {
+            paysservice.creer(pays);
+            return "le pays est bien ajouter";
+        }
+        else
+            return "Le pays Exist Deja";
+
+>>>>>>> correction
     }
 
     @ApiOperation(value = "LISTE PAYS")

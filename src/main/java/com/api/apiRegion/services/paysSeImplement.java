@@ -31,7 +31,7 @@ public class paysSeImplement implements paysServices {
     public Pays modifier(Long id, Pays pays) {
         return paysrepository.findById(id)
                 .map(r->{
-                    r.setNom(pays.getNom());
+                    r.setNomp(pays.getNomp());
                     return paysrepository.save(r);
                 }).orElseThrow(() -> new RuntimeException("Pays nom trouver"));
     }
@@ -41,5 +41,10 @@ public class paysSeImplement implements paysServices {
     public String supprimer(Long id) {
         paysrepository.deleteById(id);
         return "Pays Supprimer";
+    }
+
+    @Override
+    public Pays trouverPaysParNom(String nom) {
+        return paysrepository.findByNomp(nom);
     }
 }

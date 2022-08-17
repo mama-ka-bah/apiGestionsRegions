@@ -15,8 +15,14 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
 
     //IMPLEMENTATION DE LA METHODE CREER
     @Override
-    public AvoirHabitant creer(AvoirHabitant avoirhabitant) {
-        return avoirhabitantrepository.save(avoirhabitant);
+    public int creer(Long annee) {
+
+        return avoirhabitantrepository.INSERTANNEE(annee);
+    }
+
+    @Override
+    public AvoirHabitant trouverAnnee(Long annee) {
+        return avoirhabitantrepository.findByAnnee(annee);
     }
 
     //IMPLEMENTATION DE LA METHODE LIRE
@@ -40,6 +46,12 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
     public String supprimer(Long id) {
         avoirhabitantrepository.deleteById(id);
         return "Habitant Supprimer";
+    }
+    //IMPLEMENTATION DE LA METHODE TROUVER ANNEE DANS HABITANT
+
+    @Override
+    public AvoirHabitant VerifierHabitant(Long annee) {
+        return avoirhabitantrepository.findByAnnee(annee);
     }
 
 }
