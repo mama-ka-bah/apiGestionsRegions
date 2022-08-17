@@ -15,8 +15,14 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
 
     //IMPLEMENTATION DE LA METHODE CREER
     @Override
-    public AvoirHabitant creer(AvoirHabitant avoirhabitant) {
-        return avoirhabitantrepository.save(avoirhabitant);
+    public int creer(Long annee) {
+
+        return avoirhabitantrepository.INSERTANNEE(annee);
+    }
+
+    @Override
+    public AvoirHabitant trouverAnnee(Long annee) {
+        return avoirhabitantrepository.findByAnnee(annee);
     }
 
     //IMPLEMENTATION DE LA METHODE LIRE

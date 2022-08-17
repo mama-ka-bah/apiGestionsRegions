@@ -61,9 +61,15 @@ public class regionsServicesImplement implements regionServices{
         return "Region supprimé";
     }
 
+    //methode permettant d'ajouter region habitant pays et annee en meme temps
     @Override
     public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays) {
         return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays);
 
+    }
+
+    @Override
+    public Regions trouverRegionParNom(String nom) {
+        return regionsrepository.findByNom(nom);
     }
 }

@@ -26,5 +26,5 @@ public interface regionServices {
 
     int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays);
 
-    //Regions trouverPaysParNom();
+    Regions trouverRegionParNom(String nom);
 }
