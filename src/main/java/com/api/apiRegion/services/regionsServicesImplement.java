@@ -49,6 +49,12 @@ public class regionsServicesImplement implements regionServices{
                 }).orElseThrow(() -> new RuntimeException("Region non trouvé !"));
     }
 
+    /*
+    @Override
+    public List<Regions> trouverRegionParNom(String name) {
+        return regionsrepository.findByName(name);
+    }
+*/
     @Override
     public String supprimer(Long id) {
         regionsrepository.deleteById(id);
@@ -58,8 +64,8 @@ public class regionsServicesImplement implements regionServices{
 
 
     @Override
-    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id) {
-        return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays_id);
+    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays) {
+        return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays);
 
     }
 

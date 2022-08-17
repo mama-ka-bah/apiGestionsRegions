@@ -9,4 +9,7 @@ public interface paysServices {
     List<Pays> lire();
     Pays modifier(Long id, Pays pays);
     String supprimer(Long id);
+
+    Pays trouverPaysParNom(String name);
+
 }

@@ -2,6 +2,7 @@ package com.api.apiRegion.controller;
 
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
+import com.api.apiRegion.services.paysServices;
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +29,8 @@ import java.util.List;
 //le controlleur ci-dessous permet de manupiler la region
 public class RegionController {
     private final regionServices regionservice;//final permet rendre regionServices inchangeable
-
+    //private final Pays pays;
+    private  final paysServices paysservice;
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
     public Regions create(@RequestBody Regions regions){
@@ -37,9 +39,13 @@ public class RegionController {
 
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION avec habitant") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
-    @PostMapping("/ajout_region_habitant/{nom_region}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{idpays_id}")
-    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id){
-        return regionservice.ajouterRegionAvecHabitant(nom_region, code_region, domaine_activite, langue_majoritaire, superficie, idpays_id);
+    @PostMapping("/ajout_region_habitant/{nom_region}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}/{nombre_habitant}/{annee}")
+    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, String nom_pays){
+
+        Pays pays = paysservice.trouverPaysParNom(nom_pays);
+
+
+        return regionservice.ajouterRegionAvecHabitant(nom_region, code_region, domaine_activite, langue_majoritaire, superficie, pays.getId());
     }
 
     
