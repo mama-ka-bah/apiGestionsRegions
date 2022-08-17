@@ -1,5 +1,6 @@
 package com.api.apiRegion.controller;
 
+
 import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.services.habitantServices;
@@ -33,12 +34,14 @@ public class RegionController {
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
-    public Regions create(@RequestBody Regions regions, Habitant habitant){
-        regionservice.creer(regions);
-        habitantservices.creer(habitant);
+    //Methode permettant d'ajouter des regions et habitant en meme tant
+    public Regions create(@RequestBody Regions regions){
+        /*regionservice.creer(regions);
+        habitantservices.creer(habitant);*/
         return regionservice.creer(regions);
     }
 
+    //Methothode permettant de lire les regions avec pays
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_region")
     public List<Object[]> read(){
@@ -57,9 +60,8 @@ public class RegionController {
     @ApiOperation(value = "LISTE DES REGIONS D'UN PAYS DONNEE")
     @GetMapping("/liste_region_pays/{pays}")
     public List<Object[]> lireRegionOfPays(@PathVariable String pays){
-        List<Object[]> list = regionservice.lireRegionOfPays(pays);
+        return regionservice.lireRegionOfPays(pays);
 
-        return list;
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")

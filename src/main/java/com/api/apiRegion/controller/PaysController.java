@@ -21,6 +21,7 @@ public class PaysController {
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE PAYS")
     @PostMapping("/ajout_pays")
     public Pays create(@RequestBody Pays pays){
+
         return paysservice.creer(pays);
     }
 
