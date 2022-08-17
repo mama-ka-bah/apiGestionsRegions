@@ -20,8 +20,14 @@ public class AvoirHabitantController {
 
     @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE AVOIRHABITANT ")
     @PostMapping("/ajout_annee")
-    public AvoirHabitant creer(@RequestBody AvoirHabitant avoirhabitant){
-        return avoirhabitantService.creer(avoirhabitant);
+    public String creer(@RequestBody AvoirHabitant avoirhabitant){
+        if (avoirhabitantService.VerifierHabitant(avoirhabitant.getAnnee()) == null)
+        {
+            avoirhabitantService.creer(avoirhabitant);
+            return "Annee Bien Ajouter";
+        }
+        else
+            return "L'annee Existe Deja";
     }
 
     @ApiOperation(value = "LISTE ANNEE")

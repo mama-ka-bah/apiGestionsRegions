@@ -16,4 +16,7 @@ public interface avoirHabitantServices {
 
     //DECLARATION DE LA METHODE SUPPRIMER
     String supprimer(Long id);
+
+    //Trouvez L'Annee
+    AvoirHabitant VerifierHabitant(Long annee);
 }

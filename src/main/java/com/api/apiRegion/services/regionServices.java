@@ -21,6 +21,6 @@ public interface regionServices {
     Regions modifier(Long id, Regions regions);
     //methode permettant de de supprimer une region
     String supprimer(Long id);
-
+    //
     int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id);
 }

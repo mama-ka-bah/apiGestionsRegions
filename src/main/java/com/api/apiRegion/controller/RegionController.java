@@ -29,6 +29,7 @@ import java.util.List;
 //le controlleur ci-dessous permet de manupiler la region
 public class RegionController {
     private final regionServices regionservice;//final permet rendre regionServices inchangeable
+
     //private final Pays pays;
     private  final paysServices paysservice;
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
@@ -44,12 +45,9 @@ public class RegionController {
 
         Pays pays = paysservice.trouverPaysParNom(nom_pays);
 
-
         return regionservice.ajouterRegionAvecHabitant(nom_region, code_region, domaine_activite, langue_majoritaire, superficie, pays.getId());
     }
 
-    
-    
 
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_region")

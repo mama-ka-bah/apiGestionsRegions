@@ -5,5 +5,6 @@ import com.api.apiRegion.modele.Habitant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface avoirhabitantRepository extends JpaRepository<AvoirHabitant, Long> {
+    AvoirHabitant findByAnnee(Long annee);
 
 }
