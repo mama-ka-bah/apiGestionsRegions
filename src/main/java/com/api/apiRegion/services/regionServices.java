@@ -1,5 +1,6 @@
 package com.api.apiRegion.services;
 
+import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 
 import java.util.List;
@@ -22,5 +23,8 @@ public interface regionServices {
     //methode permettant de de supprimer une region
     String supprimer(Long id);
 
+    // trouver pays
+
     int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id);
+
 }

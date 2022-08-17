@@ -1,5 +1,6 @@
 package com.api.apiRegion.services;
 
+import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.repository.regionsRepository;
 import lombok.AllArgsConstructor;
@@ -54,9 +55,12 @@ public class regionsServicesImplement implements regionServices{
         return "Region supprimé";
     }
 
+
+
     @Override
     public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id) {
         return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays_id);
 
     }
+
 }

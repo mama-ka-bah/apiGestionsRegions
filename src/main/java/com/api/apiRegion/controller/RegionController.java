@@ -1,5 +1,6 @@
 package com.api.apiRegion.controller;
 
+import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
@@ -40,6 +41,7 @@ public class RegionController {
     public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id){
         return regionservice.ajouterRegionAvecHabitant(nom_region, code_region, domaine_activite, langue_majoritaire, superficie, idpays_id);
     }
+
     
     
 
