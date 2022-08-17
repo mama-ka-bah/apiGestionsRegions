@@ -2,9 +2,11 @@ package com.api.apiRegion.repository;
 
 import com.api.apiRegion.modele.Regions;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface regionsRepository extends JpaRepository<Regions, Long> {
@@ -29,5 +31,12 @@ public interface regionsRepository extends JpaRepository<Regions, Long> {
     //Trouvé les regions à partir d'un pays d'un pays donnée
     @Query(value = "select regions.nom_region from regions, pays where regions.idpays_id = pays.id and  pays.nom =:pays", nativeQuery = true )
     public List<Object[]> FINDREGIONSOFPAYS(@Param("pays") String pays);//@param fait reference parametre à afficher
+
+
+
+    @Modifying
+    @Transactional
+    @Query(value = "insert into regions(nom_region,code_region,domaine_activite,langue_majoritaire,superficie,idpays_id) values (:nom_region,:code_region,:domaine_activite,:langue_majoritaire,:superficie,:idpays_id);", nativeQuery = true)
+    public int INSERTREGIONWITHHABITANT(@Param("nom_region") String nom_region,@Param("code_region") String code_region, @Param("domaine_activite") String domaine_activite, @Param("langue_majoritaire") String langue_majoritaire, @Param("superficie") String superficie, @Param("idpays_id") Long idpays_id);//@param fait reference parametre à afficher
 
 }

@@ -1,8 +1,5 @@
 package com.api.apiRegion.services;
 
-import com.api.apiRegion.modele.AvoirHabitant;
-import com.api.apiRegion.modele.Habitant;
-import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 
 import java.util.List;
@@ -24,4 +21,6 @@ public interface regionServices {
     Regions modifier(Long id, Regions regions);
     //methode permettant de de supprimer une region
     String supprimer(Long id);
+
+    int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id);
 }
