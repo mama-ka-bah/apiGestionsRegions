@@ -40,4 +40,6 @@ public interface regionsRepository extends JpaRepository<Regions, Long> {
     @Query(value = "insert into regions(nom_region,code_region,domaine_activite,langue_majoritaire,superficie,idpays_id) values (:nom_region,:code_region,:domaine_activite,:langue_majoritaire,:superficie,:idpays_id);", nativeQuery = true)
     public int INSERTREGIONWITHHABITANT(@Param("nom_region") String nom_region,@Param("code_region") String code_region, @Param("domaine_activite") String domaine_activite, @Param("langue_majoritaire") String langue_majoritaire, @Param("superficie") String superficie, @Param("idpays_id") Long idpays_id);//@param fait reference parametre à afficher
 
+    //Regions findByNom_region(String nom_region);
+
 }

@@ -39,7 +39,7 @@ public class RegionController {
 
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION avec habitant") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
-    @PostMapping("/ajout_region_habitant/{nom_region}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}")
+    @PostMapping("/ajout_region_habitant/{nom_region}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}/{nombre_habitant}/{annee}")
     public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, String nom_pays){
 
         Pays pays = paysservice.trouverPaysParNom(nom_pays);
