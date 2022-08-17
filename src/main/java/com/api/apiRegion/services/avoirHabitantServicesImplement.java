@@ -47,5 +47,11 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
         avoirhabitantrepository.deleteById(id);
         return "Habitant Supprimer";
     }
+    //IMPLEMENTATION DE LA METHODE TROUVER ANNEE DANS HABITANT
+
+    @Override
+    public AvoirHabitant VerifierHabitant(Long annee) {
+        return avoirhabitantrepository.findByAnnee(annee);
+    }
 
 }

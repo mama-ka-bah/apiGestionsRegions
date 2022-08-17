@@ -20,8 +20,19 @@ public class PaysController {
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE PAYS")
     @PostMapping("/ajout_pays")
-    public Pays create(@RequestBody Pays pays){
-        return paysservice.creer(pays);
+
+
+    public String create(@RequestBody Pays pays){
+
+        Pays veryfierNomPays = paysservice.trouverPaysParNom(pays.getNomp());//L
+        if (veryfierNomPays == null)
+        {
+            paysservice.creer(pays);
+            return "le pays est bien ajouter";
+        }
+        else
+            return "Le pays Exist Deja";
+
     }
 
     @ApiOperation(value = "LISTE PAYS")
@@ -31,13 +42,13 @@ public class PaysController {
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE PAYS")
-    @PutMapping("/modifier_pays/{id}")
+    @PutMapping("/modifier_pays/{indique_identifiant_Pays_à_modifier}")
     public Pays update(@PathVariable Long indique_identifiant_Pays_à_modifier, @RequestBody Pays pays){
         return paysservice.modifier(indique_identifiant_Pays_à_modifier, pays);
     }
 
     @ApiOperation(value = "SUPPRESION DES DONNEE DANS LA TABLE PAYS")
-    @DeleteMapping("/supprimer_pays/{id}")
+    @DeleteMapping("/supprimer_pays/{indique_identifiant_Pays_à_modifier}")
     public String delete(@PathVariable Long indique_identifiant_Pays_à_modifier){
         return paysservice.supprimer(indique_identifiant_Pays_à_modifier);
     }

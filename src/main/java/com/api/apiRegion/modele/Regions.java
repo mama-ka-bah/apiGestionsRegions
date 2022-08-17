@@ -32,8 +32,12 @@ public class Regions{
     private String nom;
 
     //JOINTURE ENTRE LA TABLE REGION ET PAYS
+    //@ManyToOne
+    //@JoinColumn(name = "idpays_id")
+
     @ManyToOne
     @JoinColumn(name = "idpays_id")
     private Pays idpays;
+
 
 }
