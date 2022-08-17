@@ -22,7 +22,7 @@ public class PaysController {
     @PostMapping("/ajout_pays")
     public String create(@RequestBody Pays pays){
 
-        Pays veryfierNomPays = paysservice.trouverPaysParNom(pays.getNom());//L
+        Pays veryfierNomPays = paysservice.trouverPaysParNom(pays.getNomp());//L
         if (veryfierNomPays == null)
         {
             paysservice.creer(pays);
