@@ -1,7 +1,6 @@
 package com.api.apiRegion.controller;
 
 import com.api.apiRegion.modele.Regions;
-import com.api.apiRegion.services.habitantServices;
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +33,15 @@ public class RegionController {
     public Regions create(@RequestBody Regions regions){
         return regionservice.creer(regions);
     }
+
+
+    @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION avec habitant") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
+    @PostMapping("/ajout_region_habitant/{nom_region}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{idpays_id}")
+    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id){
+        return regionservice.ajouterRegionAvecHabitant(nom_region, code_region, domaine_activite, langue_majoritaire, superficie, idpays_id);
+    }
+    
+    
 
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_region")
