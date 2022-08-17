@@ -1,5 +1,6 @@
 package com.api.apiRegion.services;
 
+import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.repository.regionsRepository;
 import lombok.AllArgsConstructor;
@@ -48,15 +49,27 @@ public class regionsServicesImplement implements regionServices{
                 }).orElseThrow(() -> new RuntimeException("Region non trouvé !"));
     }
 
+    /*
+    @Override
+    public List<Regions> trouverRegionParNom(String name) {
+        return regionsrepository.findByName(name);
+    }
+*/
     @Override
     public String supprimer(Long id) {
         regionsrepository.deleteById(id);
         return "Region supprimé";
     }
 
+    //methode permettant d'ajouter region habitant pays et annee en meme temps
     @Override
-    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id) {
-        return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays_id);
+    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays) {
+        return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays);
 
+    }
+
+    @Override
+    public Regions trouverRegionParNom(String nom) {
+        return regionsrepository.findByNom(nom);
     }
 }

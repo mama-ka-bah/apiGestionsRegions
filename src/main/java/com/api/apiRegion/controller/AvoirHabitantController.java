@@ -19,9 +19,10 @@ public class AvoirHabitantController {
     final private avoirHabitantServices avoirhabitantService;
 
     @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE AVOIRHABITANT ")
-    @PostMapping("/ajout_annee")
-    public AvoirHabitant creer(@RequestBody AvoirHabitant avoirhabitant){
-        return avoirhabitantService.creer(avoirhabitant);
+    @PostMapping("/ajout_annee/{anneee}")
+    public int creer(@PathVariable Long anneee){
+        avoirhabitantService.creer(anneee);
+        return 1;
     }
 
     @ApiOperation(value = "LISTE ANNEE")
