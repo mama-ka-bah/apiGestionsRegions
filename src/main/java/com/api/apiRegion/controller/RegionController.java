@@ -1,7 +1,10 @@
 package com.api.apiRegion.controller;
 
+import com.api.apiRegion.modele.AvoirHabitant;
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
+import com.api.apiRegion.services.avoirHabitantServices;
+import com.api.apiRegion.services.habitantServices;
 import com.api.apiRegion.services.paysServices;
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
@@ -29,9 +32,10 @@ import java.util.List;
 //le controlleur ci-dessous permet de manupiler la region
 public class RegionController {
     private final regionServices regionservice;//final permet rendre regionServices inchangeable
-
     //private final Pays pays;
     private  final paysServices paysservice;
+    private  final habitantServices habitantervice;
+    private  final avoirHabitantServices avoirhabitantservices;
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
     public Regions create(@RequestBody Regions regions){
@@ -40,14 +44,20 @@ public class RegionController {
 
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION avec habitant") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
-    @PostMapping("/ajout_region_habitant/{nom_region}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}/{nombre_habitant}/{annee}")
-    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, String nom_pays){
+    @PostMapping("/ajout_region_habitant/{nom}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}/{nombre_habitant}/{annee}")
+    public int ajouterRegionAvecHabitant(@PathVariable String nom, @PathVariable String code_region, @PathVariable String domaine_activite, @PathVariable String langue_majoritaire, @PathVariable String superficie, @PathVariable String nom_pays, @PathVariable String nombre_habitant, @PathVariable Long annee){
 
         Pays pays = paysservice.trouverPaysParNom(nom_pays);
 
-        return regionservice.ajouterRegionAvecHabitant(nom_region, code_region, domaine_activite, langue_majoritaire, superficie, pays.getId());
-    }
+        regionservice.ajouterRegionAvecHabitant(nom, code_region, domaine_activite, langue_majoritaire, superficie, pays.getId());
+        Regions region = regionservice.trouverRegionParNom(nom);
+        AvoirHabitant avoirhabitant = avoirhabitantservices.trouverAnnee(annee);
+        habitantervice.ajouterHabitant(nombre_habitant, region.getId(), avoirhabitant.getId());
 
+        return 1;
+    }
+    
+    
 
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_region")
@@ -67,9 +77,7 @@ public class RegionController {
     @ApiOperation(value = "LISTE DES REGIONS D'UN PAYS DONNEE")
     @GetMapping("/liste_region_pays/{pays}")
     public List<Object[]> lireRegionOfPays(@PathVariable String pays){
-        List<Object[]> list = regionservice.lireRegionOfPays(pays);
-
-        return list;
+        return regionservice.lireRegionOfPays(pays);
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
@@ -79,8 +87,8 @@ public class RegionController {
     }
 
     @ApiOperation(value = "SUPPRESION DES DONNEES DE LA TABLE REGION")
-    @DeleteMapping("/supprimer_region/{identifiant_region}")
-    public String delete(@PathVariable Long identifiant_region){
-        return regionservice.supprimer(identifiant_region);
+    @DeleteMapping("/supprimer_region/{id}")
+    public String delete(@PathVariable Long id){
+        return regionservice.supprimer(id);
     }
 }

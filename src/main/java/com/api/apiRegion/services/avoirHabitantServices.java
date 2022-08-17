@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface avoirHabitantServices {
     //DECLARATION DE LA METHODE CREER
-    AvoirHabitant creer(AvoirHabitant avoirhabitant);
-
+    int creer(Long annee);
+    AvoirHabitant trouverAnnee(Long annee);
     //DECLARATION DE LA METHODE LIRE
     List<AvoirHabitant> lire();
 
