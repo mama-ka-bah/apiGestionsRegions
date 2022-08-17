@@ -1,5 +1,6 @@
 package com.api.apiRegion.services;
 
+import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 
 import java.util.List;
@@ -13,14 +14,15 @@ public interface regionServices {
     List<Object[]> lire();
     //methode permettant de lister des regions sans pays
     List<Object[]> lireSansPays();
-    //methode permettant de lister des regions avec l'évolution
+    //methode permettant de lister des regions avec l'évolutiongit
     List<Object[]> lireRegionHbtAnnee();
     //methode permettant de lister les regions d'un pays
     List<Object[]> lireRegionOfPays(String pays);
     //methode permettant de modifier une region
     Regions modifier(Long id, Regions regions);
     //methode permettant de de supprimer une region
+
     String supprimer(Long id);
 
-    int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays_id);
+    int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays);
 }

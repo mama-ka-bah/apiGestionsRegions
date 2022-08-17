@@ -42,4 +42,9 @@ public class paysSeImplement implements paysServices {
         paysrepository.deleteById(id);
         return "Pays Supprimer";
     }
+
+    @Override
+    public Pays trouverPaysParNom(String nom) {
+        return paysrepository.findByNom(nom);
+    }
 }
