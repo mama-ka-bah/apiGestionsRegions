@@ -1,17 +1,16 @@
 package com.api.apiRegion.controller;
 
-<<<<<<< HEAD
 import com.api.apiRegion.modele.Habitant;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.services.habitantServices;
-=======
+
 import com.api.apiRegion.modele.AvoirHabitant;
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.services.avoirHabitantServices;
 import com.api.apiRegion.services.habitantServices;
 import com.api.apiRegion.services.paysServices;
->>>>>>> correction
+
 import com.api.apiRegion.services.regionServices;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,25 +37,21 @@ import java.util.List;
 //le controlleur ci-dessous permet de manupiler la region
 public class RegionController {
     private final regionServices regionservice;//final permet rendre regionServices inchangeable
-<<<<<<< HEAD
+
     private final habitantServices habitantservices;
 
-=======
     //private final Pays pays;
     private  final paysServices paysservice;
     private  final habitantServices habitantervice;
     private  final avoirHabitantServices avoirhabitantservices;
->>>>>>> correction
+
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
-    public Regions create(@RequestBody Regions regions, Habitant habitant){
-        regionservice.creer(regions);
-        habitantservices.creer(habitant);
+    public Regions create(@RequestBody Regions regions){
+
         return regionservice.creer(regions);
     }
 
-<<<<<<< HEAD
-=======
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION avec habitant") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region_habitant/{nom}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}/{nombre_habitant}/{annee}")
@@ -74,7 +69,6 @@ public class RegionController {
     
     
 
->>>>>>> correction
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_region")
     public List<Object[]> read(){
