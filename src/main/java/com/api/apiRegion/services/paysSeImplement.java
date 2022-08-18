@@ -15,9 +15,16 @@ public class paysSeImplement implements paysServices {
     private  paysRepository paysrepository;
 
     //IMPLEMENTATION DE LA METHODE CREER
-    @Override
+
+   /*
+   @Override
     public Pays creer(Pays pays) {
          return paysrepository.save(pays);
+    }
+   */
+    @Override
+    public int ajouterPays(String nomp) {
+        return paysrepository.INSERTPAYS(nomp);
     }
 
     //IMPLEMENTATION DE LA METHODE LIRE
