@@ -21,10 +21,11 @@ public interface regionServices {
     //methode permettant de modifier une region
     Regions modifier(Long id, Regions regions);
     //methode permettant de de supprimer une region
-
     String supprimer(Long id);
 
+    //La fonction utilisé pour ajouter la region avec des requete native le nom "ajouterRegionAvecHabitant" ne siginfie pas que c'est elle seul qui ajoute la region avec l'habitant elle juste utilsé dans le controlleur qui permet d'ajouter la region avec habitant et l'année
     int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays);
 
+    //recherche du region par son nom, elle retourne l'objet de type region
     Regions trouverRegionParNom(String nom);
 }

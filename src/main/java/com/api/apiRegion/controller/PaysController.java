@@ -19,15 +19,16 @@ public class PaysController {
     paysServices paysservice;
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE PAYS")
-    @PostMapping("/ajout_pays")
+    @PostMapping("/ajout_pays/{nom_pays}")
 
+//@RequestBody Pays pays
+    public String create(String nomPays){
 
-    public String create(@RequestBody Pays pays){
-
-        Pays veryfierNomPays = paysservice.trouverPaysParNom(pays.getNomp());//L
+        //verification si le pays existe déjà dans la base ou pas
+        Pays veryfierNomPays = paysservice.trouverPaysParNom(nomPays);//recuperation du pays dans la base
         if (veryfierNomPays == null)
         {
-            paysservice.creer(pays);
+            paysservice.ajouterPays(nomPays);
             return "le pays est bien ajouter";
         }
         else

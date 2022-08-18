@@ -44,7 +44,7 @@ public class RegionController {
     private  final paysServices paysservice;
     private  final habitantServices habitantervice;
     private  final avoirHabitantServices avoirhabitantservices;
-
+    private final paysServices paysservices;
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region")
     public Regions create(@RequestBody Regions regions){
@@ -55,16 +55,27 @@ public class RegionController {
 
     @ApiOperation(value = "AJOUT DES DONNEES DANS LA TABLE REGION avec habitant") //décrit une opération ou généralement une méthode HTTP par rapport à un chemin spécifique.
     @PostMapping("/ajout_region_habitant/{nom}/{code_region}/{domaine_activite}/{langue_majoritaire}/{superficie}/{nom_pays}/{nombre_habitant}/{annee}")
-    public int ajouterRegionAvecHabitant(@RequestBody @PathVariable String nom, @PathVariable String code_region, @PathVariable String domaine_activite, @PathVariable String langue_majoritaire, @PathVariable String superficie, @PathVariable String nom_pays, @PathVariable String nombre_habitant, @PathVariable Long annee){
+    public String ajouterRegionAvecHabitant(@RequestBody @PathVariable String nom, @PathVariable String code_region, @PathVariable String domaine_activite, @PathVariable String langue_majoritaire, @PathVariable String superficie, @PathVariable String nom_pays, @PathVariable String nombre_habitant, @PathVariable Long annee){
 
+        //ajout du pays s'il n'existait pas
+        if (paysservice.trouverPaysParNom(nom_pays) == null){
+            paysservice.ajouterPays(nom_pays);
+        }
+        //ajout de l'annee s'il n'existait pas
+        if (avoirhabitantservices.trouverAnnee(annee) == null){
+            avoirhabitantservices.creer(annee);
+        }
+        //recuperation de l'objet pays entré par l'utilisateur pour enfin extraire l'id
         Pays pays = paysservice.trouverPaysParNom(nom_pays);
-
-        regionservice.ajouterRegionAvecHabitant(nom, code_region, domaine_activite, langue_majoritaire, superficie, pays.getId());
-        Regions region = regionservice.trouverRegionParNom(nom);
-        AvoirHabitant avoirhabitant = avoirhabitantservices.trouverAnnee(annee);
-        habitantervice.ajouterHabitant(nombre_habitant, region.getId(), avoirhabitant.getId());
-
-        return 1;
+        if(regionservice.trouverRegionParNom(nom) == null){//si le pays entré n'a pas été trouvé dans la base on l'ajoute
+            regionservice.ajouterRegionAvecHabitant(nom, code_region, domaine_activite, langue_majoritaire, superficie, pays.getId());//l'ajout de la region
+            Regions region = regionservice.trouverRegionParNom(nom);//recuperation de la region enregistré
+            AvoirHabitant avoirhabitant = avoirhabitantservices.trouverAnnee(annee);//recuperation de l'annee
+            habitantervice.ajouterHabitant(nombre_habitant, region.getId(), avoirhabitant.getId());//remplisage de la table avoirhabitant
+            return "Region ajouté avec succes";
+        }else {//si le pays existe déjà dans base
+            return "Cette region existe déjà";
+        }
     }
     
     

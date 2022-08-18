@@ -34,11 +34,12 @@ public interface regionsRepository extends JpaRepository<Regions, Long> {
     public List<Object[]> FINDREGIONSOFPAYS(@Param("pays") String pays);//@param fait reference parametre à afficher
 
 
-    @Modifying
-    @Transactional
+    //requete native permettant ou appelé native query enregistré dans la base
+    @Modifying//annotation permettant de donner la fonction d'insertion
+    @Transactional//utilser pour les rolback, commit c'est à dire pour la gestion des transaction
     @Query(value = "insert into regions(nom,code_region,domaine_activite,langue_majoritaire,superficie,idpays_id) values (:nom,:code_region,:domaine_activite,:langue_majoritaire,:superficie,:idpays_id);", nativeQuery = true)
     public int INSERTREGIONWITHHABITANT(@Param("nom") String region,@Param("code_region") String code_region, @Param("domaine_activite") String domaine_activite, @Param("langue_majoritaire") String langue_majoritaire, @Param("superficie") String superficie, @Param("idpays_id") Long idpays_id);//@param fait reference parametre à afficher
 
-    Regions findByNom(String nom);
+    Regions findByNom(String nom);//fonction native de spring boot permettant de recuperer l'objet par son nom
 
 }

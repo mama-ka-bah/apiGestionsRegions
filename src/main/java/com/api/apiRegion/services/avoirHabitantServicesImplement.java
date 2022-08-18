@@ -19,7 +19,7 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
 
         return avoirhabitantrepository.INSERTANNEE(annee);
     }
-
+//Averifier peut etre qu'il une duplication de fonction, confusion avec la derniere fonction
     @Override
     public AvoirHabitant trouverAnnee(Long annee) {
         return avoirhabitantrepository.findByAnnee(annee);
@@ -46,12 +46,6 @@ public class avoirHabitantServicesImplement implements avoirHabitantServices{
     public String supprimer(Long id) {
         avoirhabitantrepository.deleteById(id);
         return "Habitant Supprimer";
-    }
-    //IMPLEMENTATION DE LA METHODE TROUVER ANNEE DANS HABITANT
-
-    @Override
-    public AvoirHabitant VerifierHabitant(Long annee) {
-        return avoirhabitantrepository.findByAnnee(annee);
     }
 
 }
