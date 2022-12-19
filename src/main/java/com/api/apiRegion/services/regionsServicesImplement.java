@@ -1,12 +1,14 @@
 package com.api.apiRegion.services;
 
-import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.repository.regionsRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -63,8 +65,8 @@ public class regionsServicesImplement implements regionServices{
 
     //methode permettant d'ajouter region habitant pays et annee en meme temps
     @Override
-    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, Long idpays) {
-        return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, idpays);
+    public int ajouterRegionAvecHabitant(String nom_region, String code_region, String domaine_activite, String langue_majoritaire, String superficie, String photoaregion, String description, Long idpays) {
+        return regionsrepository.INSERTREGIONWITHHABITANT(nom_region,code_region, domaine_activite, langue_majoritaire, superficie, photoaregion, description, idpays);
 
     }
 

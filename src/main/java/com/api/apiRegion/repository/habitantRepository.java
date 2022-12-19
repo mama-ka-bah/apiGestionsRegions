@@ -13,6 +13,6 @@ public interface habitantRepository extends JpaRepository<Habitant,Long> {
     @Modifying
     @Transactional
     @Query(value = "insert into habitants(nbre_habitant, id_region_id, id_avoirhabitant_id) values (:nbre_habitant,:id_region_id,:id_avoirhabitant_id);", nativeQuery = true)
-    public int INSERTHABITANT(@Param("nbre_habitant") String nbre_habitant, @Param("id_region_id") Long id_region_id, @Param("id_avoirhabitant_id") Long id_avoirhabitant_id);//@param fait reference parametre à afficher
+    public int INSERTHABITANT(@Param("nbre_habitant") Long nbre_habitant, @Param("id_region_id") Long id_region_id, @Param("id_avoirhabitant_id") Long id_avoirhabitant_id);//@param fait reference parametre à afficher
 
 }

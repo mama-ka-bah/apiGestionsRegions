@@ -22,7 +22,7 @@ public class habitantServicesImplement implements habitantServices{
     }
 
     @Override
-    public int ajouterHabitant(String nbre_habitant,Long id_region_id, Long id_avoirhabitant_id) {
+    public int ajouterHabitant(Long nbre_habitant,Long id_region_id, Long id_avoirhabitant_id) {
         return habitantrepository.INSERTHABITANT(nbre_habitant, id_region_id, id_avoirhabitant_id);
     }
 

@@ -10,7 +10,7 @@ public interface habitantServices {
     Habitant creer(Habitant habitant);
 
     //ajoutant de l'habitant avec la requete
-    int ajouterHabitant(String nbre_habitant,Long id_region_id, Long id_avoirhabitant_id);
+    int ajouterHabitant(Long nbre_habitant,Long id_region_id, Long id_avoirhabitant_id);
 
     //DECLARATION DE LA METHODE LIRE
     List<Habitant> lire();

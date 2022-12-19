@@ -28,6 +28,11 @@ public class Regions{
 
     private String langue_majoritaire;
 
+    private String description;
+
+    //@Column(nullable = true, length = 90)
+    private String photoaregion;
+
     @Column(unique = true)
     private String nom;
 

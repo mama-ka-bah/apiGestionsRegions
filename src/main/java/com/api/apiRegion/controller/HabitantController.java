@@ -6,11 +6,12 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/habitant")
+@RequestMapping("/api/habitant")
 @AllArgsConstructor
 @Api(value = "habitant", description = "MANIPULATION DES DONNEES DE LA TABLE PAYS")
 public class HabitantController {
@@ -27,12 +28,14 @@ public class HabitantController {
 */
     @ApiOperation(value = "AJOUT DES DONNEE DANS LA TABLE HABITANT")
     @PostMapping("/ajout_habitant/{nbre_habitant}/{id_region_id}/{id_avoirhabitant_id}")
-    public void ajout_habitant(@PathVariable String nbre_habitant,@PathVariable Long id_region_id, @PathVariable Long id_avoirhabitant_id){
+    @PreAuthorize("hasRole('ADMIN')")
+    public void ajout_habitant(@PathVariable Long nbre_habitant,@PathVariable Long id_region_id, @PathVariable Long id_avoirhabitant_id){
         habitantservice.ajouterHabitant(nbre_habitant, id_region_id, id_avoirhabitant_id);
     }
 
     @ApiOperation(value = "LISTE HABITANT")
     @GetMapping("/liste_habitant")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Habitant> lister(){
         return habitantservice.lire();
     }
@@ -45,6 +48,7 @@ public class HabitantController {
 
     @ApiOperation(value = "SUPPRESSION DES DONNEES DE LA TABLE HABITANT")
     @DeleteMapping("/supprimer_habitant/{indique_identifiant_habitant_à_supprimer}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String supprimer(@PathVariable Long indique_identifiant_habitant_à_supprimer){
         return habitantservice.supprimer(indique_identifiant_habitant_à_supprimer);
     }

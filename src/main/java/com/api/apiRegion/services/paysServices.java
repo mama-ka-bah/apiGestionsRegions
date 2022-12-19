@@ -14,6 +14,6 @@ public interface paysServices {
     Pays trouverPaysParNom(String name);
 
     //fonction permettant d'ajouter un pays avec des requete native
-    int ajouterPays(String nomp);
+    Pays ajouterPays(Pays pays);
 
 }

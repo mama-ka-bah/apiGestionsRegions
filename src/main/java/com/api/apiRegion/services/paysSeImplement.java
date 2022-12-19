@@ -3,6 +3,7 @@ package com.api.apiRegion.services;
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.repository.paysRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 public class paysSeImplement implements paysServices {
 
     //DECLARATION D'UN ATTRIBUT DE TYPE REPOSITORY'
+    @Autowired
     private  paysRepository paysrepository;
 
     //IMPLEMENTATION DE LA METHODE CREER
@@ -23,8 +25,8 @@ public class paysSeImplement implements paysServices {
     }
    */
     @Override
-    public int ajouterPays(String nomp) {
-        return paysrepository.INSERTPAYS(nomp);
+    public Pays ajouterPays(Pays pays) {
+        return paysrepository.save(pays);
     }
 
     //IMPLEMENTATION DE LA METHODE LIRE
