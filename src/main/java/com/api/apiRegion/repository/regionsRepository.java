@@ -2,12 +2,14 @@ package com.api.apiRegion.repository;
 
 import com.api.apiRegion.modele.Pays;
 import com.api.apiRegion.modele.Regions;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.util.List;
 
 public interface regionsRepository extends JpaRepository<Regions, Long> {
@@ -37,9 +39,18 @@ public interface regionsRepository extends JpaRepository<Regions, Long> {
     //requete native permettant ou appelé native query enregistré dans la base
     @Modifying//annotation permettant de donner la fonction d'insertion
     @Transactional//utilser pour les rolback, commit c'est à dire pour la gestion des transaction
-    @Query(value = "insert into regions(nom,code_region,domaine_activite,langue_majoritaire,superficie,photoaregion,description, idpays_id) values (:nom,:code_region,:domaine_activite,:langue_majoritaire,:superficie,:photoaregion, :description, :idpays_id);", nativeQuery = true)
+    @Query(value = "insert into regions(nom,code_region,domaine_activite,langue_majoritaire,superficie,photoaregion,description, etatr, idpays_id) values (:nom,:code_region,:domaine_activite,:langue_majoritaire,:superficie,:photoaregion, :description, 1, :idpays_id);", nativeQuery = true)
     public int INSERTREGIONWITHHABITANT(@Param("nom") String region,@Param("code_region") String code_region, @Param("domaine_activite") String domaine_activite, @Param("langue_majoritaire") String langue_majoritaire, @Param("superficie") String superficie, @Param("photoaregion") String photoaregion, @Param("description") String description, @Param("idpays_id") Long idpays_id);//@param fait reference parametre à afficher
 
     Regions findByNom(String nom);//fonction native de spring boot permettant de recuperer l'objet par son nom
 
+    //List<Regions> findFirst4ByNbreCommentairte(Long nbreCommentairte, Sort sort);
+
+    //List<Regions> findAllByOrderByNbreCommentairte();
+
+    @Query(value = "SELECT * FROM regions where etatr=1 ORDER BY nbre_commentairte LIMIT 4", nativeQuery = true )
+    public List<Regions> regionsFavorits();
+
+    @Query(value = "SELECT * FROM regions where etatr = 1", nativeQuery = true )
+    public List<Regions> regionsActive();
 }

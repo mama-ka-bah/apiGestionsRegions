@@ -3,12 +3,10 @@ package com.api.apiRegion.services;
 import com.api.apiRegion.modele.Regions;
 import com.api.apiRegion.repository.regionsRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -47,20 +45,20 @@ public class regionsServicesImplement implements regionServices{
                     r.setDomaine_activite(regions.getDomaine_activite());
                     r.setLangue_majoritaire(regions.getLangue_majoritaire());
                     r.setSuperficie(regions.getSuperficie());
+                    r.setPhotoaregion(regions.getPhotoaregion());
+                    r.setDescription(regions.getDescription());
                     return regionsrepository.save(r);
                 }).orElseThrow(() -> new RuntimeException("Region non trouvé !"));
     }
 
-    /*
     @Override
-    public List<Regions> trouverRegionParNom(String name) {
-        return regionsrepository.findByName(name);
-    }
-*/
-    @Override
-    public String supprimer(Long id) {
-        regionsrepository.deleteById(id);
-        return "Region supprimé";
+    public Regions supprimer(Long id) {
+        Regions regions = regionsrepository.findById(id).get();
+        return regionsrepository.findById(id)
+                .map(r-> {
+                    r.setEtatr(false);
+                    return regionsrepository.save(r);
+                }).orElseThrow(() -> new RuntimeException("Region non trouvé !"));
     }
 
     //methode permettant d'ajouter region habitant pays et annee en meme temps
@@ -73,5 +71,11 @@ public class regionsServicesImplement implements regionServices{
     @Override
     public Regions trouverRegionParNom(String nom) {
         return regionsrepository.findByNom(nom);
+    }
+
+    @Override
+    public List<Regions> regionsFavories() {
+        List<Regions> regions = regionsrepository.regionsFavorits();
+        return regions;
     }
 }

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -92,6 +93,7 @@ public class RegionController {
         HabitantAnnees habitantAnneeRecuperer = new JsonMapper().readValue(habitantAnneVenant, HabitantAnnees.class);
         Regions regionsRecuperer = new JsonMapper().readValue(regionsVenant, Regions.class);
         regionsRecuperer.setPhotoaregion(nomfile);
+        regionsRecuperer.setEtatr(true);
         String nompays = paysservice.trouverPaysParNom(regionsRecuperer.getIdpays().getNomp()).getNomp();
         System.out.println(nompays);
 
@@ -138,7 +140,34 @@ public class RegionController {
     @ApiOperation(value = "LISTE DES REGIONS AVEC PAYS")
     @GetMapping("/liste_regions")
     public List<Regions> lesregions(){
-        return rregionsRepository.findAll();
+
+        /*
+        List<Regions> mesregions = new ArrayList<>();
+        //List<Regions> regionsValide = new ArrayList<>();
+        mesregions = rregionsRepository.findAll();
+        System.err.println(mesregions);
+        if(mesregions.size() > 0){
+           // for(int i=1 ; i<mesregions.size(); i++){
+                //if(mesregions.get(i).getEtatr() == false)
+                    //System.err.println(mesregions.size());
+                    //mesregions.remove(mesregions.get(i));
+            //}
+            for (Regions r:mesregions) {
+                if(r.getEtatr().equals(false)){
+                    System.err.println(mesregions.size());
+                    mesregions.remove(r);
+                    System.err.println(mesregions.size());
+                }
+            }
+        }
+
+
+
+        System.err.println(mesregions);
+
+         */
+
+        return rregionsRepository.regionsFavorits();
     }
 
     @ApiOperation(value = "LISTE DES REGIONS SANS PAYS")
@@ -158,16 +187,39 @@ public class RegionController {
     }
 
     @ApiOperation(value = "MODIFICATION DES DONNEES DE LA TABLE REGION")
-    @PutMapping("/modifier_region/{identifiant_region}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public Regions update(@PathVariable Long identifiant_region, @RequestBody Regions regions){
-        return regionservice.modifier(identifiant_region, regions);
+    @PutMapping("/modifier_region")
+    //@PreAuthorize("hasRole('ADMIN')")
+    public Regions update(@RequestParam(value = "file", required = true) MultipartFile file,
+                          @RequestParam(value = "region") String regionsVenant
+    ) throws IOException{
+
+
+        String url= "C:/Users/mkkeita/Desktop/projects/angular/interfaceMaliTourist/src/assets/images";
+
+        String nomfile = StringUtils.cleanPath(file.getOriginalFilename());
+        System.out.println(nomfile);
+
+        ConfigImage.saveimgA(url, nomfile, file);
+
+        Regions regionsRecuperer = new JsonMapper().readValue(regionsVenant, Regions.class);
+
+        regionsRecuperer.setPhotoaregion(nomfile);
+        regionsRecuperer.setNbreCommentairte(0L);
+
+        return regionservice.modifier(regionsRecuperer.getId(), regionsRecuperer);
     }
 
     @ApiOperation(value = "SUPPRESION DES DONNEES DE LA TABLE REGION")
     @DeleteMapping("/supprimer_region/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
-    public String delete(@PathVariable Long id){
+    //@PreAuthorize("hasRole('ADMIN')")
+    public Regions delete(@PathVariable Long id){
         return regionservice.supprimer(id);
     }
+
+    @ApiOperation(value = "LISTE DES REGIONS D'UN PAYS DONNEE")
+    @GetMapping("/favouriteRegions")
+    public List<Regions> lireRegionOfPays(){
+        return regionservice.regionsFavories();
+    }
+
 }

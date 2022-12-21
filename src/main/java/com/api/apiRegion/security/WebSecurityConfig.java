@@ -131,6 +131,7 @@ public class WebSecurityConfig {
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .authorizeRequests()
         .antMatchers("/api/auth/**").permitAll()
+        .antMatchers("/api/commentaire/**").permitAll()
         .antMatchers("/api/bienvenue/**").permitAll()
         .antMatchers("/api/roles/**").permitAll()
         .antMatchers("/api/roles/**").permitAll()

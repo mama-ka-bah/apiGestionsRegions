@@ -1,13 +1,14 @@
 package com.api.apiRegion.modele;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
-import javax.swing.plaf.synth.Region;
 import java.util.Date;
 
 @Entity
 @Data
+@ToString
 public class Commentaires {
 
     @Id

@@ -1,9 +1,6 @@
 package com.api.apiRegion.modele;
 
-import lombok.Generated;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class Regions{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +30,10 @@ public class Regions{
 
     //@Column(nullable = true, length = 90)
     private String photoaregion;
+
+    private Boolean etatr;
+
+    private Long nbreCommentairte;
 
     @Column(unique = true)
     private String nom;

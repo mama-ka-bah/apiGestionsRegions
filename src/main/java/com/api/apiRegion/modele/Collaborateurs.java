@@ -1,6 +1,7 @@
 package com.api.apiRegion.modele;
 
 import com.api.apiRegion.repository.Role;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -15,6 +16,7 @@ import java.util.Set;
       @UniqueConstraint(columnNames = "username"),
       @UniqueConstraint(columnNames = "email") 
     })
+@ToString
 public class Collaborateurs {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
